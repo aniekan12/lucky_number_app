@@ -24,7 +24,7 @@ class LuckyNumberActivity : AppCompatActivity() {
         Toast.makeText(this@LuckyNumberActivity, "hi ${getUserName()}", Toast.LENGTH_LONG)
 
         shareButton.setOnClickListener{
-            intent = Intent(Intent.ACTION_SEND)
+            shareRandomNumber(getUserName()!!, generateRandomNumber())
         }
 
     }
@@ -36,5 +36,12 @@ class LuckyNumberActivity : AppCompatActivity() {
 
    private fun generateRandomNumber(): Int {
         return Random.nextInt(1000)
+    }
+
+    private fun shareRandomNumber(name:String, randomNumber:Int) {
+        var shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"$name is a lucky guy or girl. mjfpm")
+        shareIntent.putExtra(Intent.EXTRA_TEXT,"his/her lucky number is $randomNumber")
+        startActivity(shareIntent)
     }
 }
