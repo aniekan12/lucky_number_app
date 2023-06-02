@@ -1,5 +1,6 @@
 package com.example.luckynumberapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -23,15 +24,14 @@ class LuckyNumberActivity : AppCompatActivity() {
         Toast.makeText(this@LuckyNumberActivity, "hi ${getUserName()}", Toast.LENGTH_LONG)
 
         shareButton.setOnClickListener{
-
+            intent = Intent(Intent.ACTION_SEND)
         }
 
     }
 
-    private fun getUserName() : String{
-        var bundle:Bundle?= intent.extras
-        var name = bundle!!.get("name").toString()
-        return name
+    private fun getUserName(): String? {
+        var bundle: Bundle? = intent.extras
+        return bundle!!.getString("name")
     }
 
    private fun generateRandomNumber(): Int {
